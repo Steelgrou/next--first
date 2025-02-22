@@ -1,8 +1,11 @@
 import MenuLink from "./menuLink/menuLink";
 import styles from "./sidebar.module.css"
 
-import { MdDashboard, MdSupervisedUserCircle, MdSettings } from "react-icons/md";
 
+// icons
+
+import { MdDashboard, MdSupervisedUserCircle, MdSettings } from "react-icons/md";
+// data
 const menuItems = [
     {
         title: "Pages",
@@ -33,7 +36,15 @@ const menuItems = [
 ]
 const Sidebar = () => {
     return (
-        <div clasName={styles.container}>
+        <div className={styles.container}>
+            <div className={styles.user}>
+                <img className={styles.userImage} src="/profil.png" alt="saidbar-pic" width="50" height="50" />
+                
+            <div className={styles.userDetail}>
+                <span className={styles.username}>Aziz Adilov</span>
+                <span className={styles.userTitle} >Administrator</span>
+            </div>
+            </div>
             <ul>
                 {menuItems.map((cat) => (
                     <li key={cat.title}>
