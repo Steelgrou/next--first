@@ -38,4 +38,18 @@
     color: var(--textSoft);
     margin: 10px 0;
     font-size: 13px
-}                               ;
+}                               
+
+.logout {
+    padding: 20px;
+    margin: 5px 0px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    border: none;
+    width: 100%;
+    border-color: none;
+
+}
