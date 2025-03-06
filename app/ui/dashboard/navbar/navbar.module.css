@@ -29,7 +29,9 @@
 }
 
 .input {
-    background-color: transparent;
+    padding: 10px;
+    border-radius: 10px;
+    background-color:var(--bg) ;
     border: none;
     color: var(--textSoft)
 }
