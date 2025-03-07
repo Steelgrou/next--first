@@ -20,7 +20,7 @@ export default function Rightbar() {
       </div>
 
       <div className={styles.item}>
-        <div className={styles.bgContainer}>
+        <div className={styles.bgContainer} >
           <img style={{width:"100px"}} src="/profil.png" alt="" fill className={styles.bg} />
         </div>
         <div className={styles.texts}>
