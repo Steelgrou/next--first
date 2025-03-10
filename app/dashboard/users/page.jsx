@@ -26,30 +26,35 @@ export default function UsersPage() {
         </thead>
         <tbody>
           <tr>
-            <td><div className={styles.user}>
-              <img src="/profil.png"
-                alt=""
-                width={40}
-                height={40}
-                className={styles.userImage}
-              />
-              John Doe
-            </div>
+            <td>
+              <div className={styles.user}>
+                <img src="/profil.png"
+                  alt=""
+                  width={40}
+                  height={40}
+                  className={styles.userImage}
+                />
+                John Doe
+              </div>
             </td>
             <td>john@gmail.com</td>
             <td>13.01.2022</td>
             <td>Admin</td>
             <td>active</td>
             <td>
-              <Link href="/">
-                <button className={`${styles.button} ${styles.view}`}>View</button>
-              </Link>
-              <button className={`${styles.button} ${styles.delete}`}>Delete</button>
+              <div className={styles.buttons}>
+
+                <Link href="/">
+                  <button className={`${styles.button} ${styles.view}`}>View</button>
+                </Link>
+                <button className={`${styles.button} ${styles.delete}`}>Delete</button>
+
+              </div>
             </td>
           </tr>
         </tbody>
       </table>
-      <Pagination/>
+      <Pagination />
     </div>
   );
 }
