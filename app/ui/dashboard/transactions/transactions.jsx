@@ -15,7 +15,7 @@ export default function Transactions() {
                 </thead>
                 <tbody>
                     <tr>
-                        <td>
+                        <td className={styles.user}>
                             <img src="/profil.png"
                                 alt=""
                                 width={40}
@@ -31,7 +31,7 @@ export default function Transactions() {
                         <td>$3.200</td>
                     </tr>
                     <tr>
-                        <td>
+                        <td className={styles.user}>
                             <img src="/profil.png"
                                 alt=""
                                 width={40}
@@ -47,7 +47,7 @@ export default function Transactions() {
                         <td>$3.200</td>
                     </tr>
                     <tr>
-                        <td>
+                        <td className={styles.user}>
                             <img src="/profil.png"
                                 alt=""
                                 width={40}

@@ -4,8 +4,8 @@ import Link from "next/link";
 import styles from "@/app/ui/dashboard/products/products.module.css";
 
 export default function ProductsPage() {
-    return (
-      <div className={styles.container}>
+  return (
+    <div className={styles.container}>
       <div className={styles.top}>
         <Search placeholder="Search for a product ..." />
         <Link href="/dashboard/products/add">
@@ -28,19 +28,19 @@ export default function ProductsPage() {
           <tr>
             <td>
               <div className={styles.product}>
-                <img src="/profil.png"
+                <img src="/iphone.WEBP"
                   alt=""
                   width={40}
                   height={40}
                   className={styles.productImage}
                 />
-                John Doe
+                Iphone
               </div>
             </td>
-            <td>john@gmail.com</td>
-            <td>13.01.2022</td>
-            <td>Admin</td>
-            <td>active</td>
+            <td>It`s the last phone</td>
+            <td>$1100</td>
+            <td>13.01.2025</td>
+            <td>72</td>
             <td>
               <div className={styles.buttons}>
 
@@ -56,5 +56,5 @@ export default function ProductsPage() {
       </table>
       <Pagination />
     </div>
-    );
-  }
+  );
+}
