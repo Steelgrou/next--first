@@ -1,5 +1,5 @@
-import styles from "@/app/ui/dashboard/products/singleUser/singleUser.module.css"
-import Image from "next/image"
+import styles from "@/app/ui/dashboard/users/singleUser/singleUser.module.css"
+
 
 
 export default function SingleUserPage() {
