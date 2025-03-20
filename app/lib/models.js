@@ -17,19 +17,18 @@ const userScheme = mongoose.Schema({
         type: String,
     },
     isAdmin: {
-        type: boolean,
+        type: Boolean,
         default: true,
     },
     isActive: {
-        type: boolean,
+        type: Boolean,
         default: true
     },
     phone: {
         type: String,
-    }
-    , phone: {
-        type: String,
     },
+   
+  
     address: {
         type: String,
     }
@@ -58,11 +57,11 @@ const ProductScheme = mongoose.Schema({
         min: 0
     },
     img: {
-        type: string,
+        type: String,
 
     },
     color: {
-        type: string,
+        type: String,
 
     },
     size: {
