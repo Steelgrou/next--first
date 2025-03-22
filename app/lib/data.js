@@ -3,18 +3,19 @@ import { User } from './models';
 import { connectToDB } from './utils';
 
 // Асинхронная функция для получения пользователей из базы данных
-export const fetchUsers = async () => {
+export const fetchUsers = async (q) => {
+    const regex = new RegExp(q, "i")
     try {
         connectToDB();
         // Используем метод find() модели User для получения всех пользователей
-        const users = await User.find();
-        
+        const users = await User.find({username: { $regex: regex }});
+
         // Возвращаем полученных пользователей
         return users;
     } catch (error) {
         // Логируем ошибку, если что-то пошло не так
         console.log(error);
-        
+
         // Выбрасываем новую ошибку с сообщением о неудаче
         throw new Error("Failed to fetch users");
     }

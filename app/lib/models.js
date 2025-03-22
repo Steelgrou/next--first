@@ -1,75 +1,78 @@
-import mongoose from "mongoose"
+import mongoose from "mongoose";
 
-const userScheme = mongoose.Schema({
+const userScheme = mongoose.Schema(
+  {
     username: {
-        type: String,
-        required: true,
-        unique: true,
-        min: 3,
-        max: 20
+      type: String,
+      required: true,
+      unique: true,
+      min: 3,
+      max: 20,
     },
-    password: {
-        type: String,
-        required: true,
+    email: {  // ✅ Добавлено
+      type: String,
+      required: true,
+      unique: true,  // Email должен быть уникальным
+    },
+ 
 
+
+    password: {
+      type: String,
+      required: true,
     },
     img: {
-        type: String,
+      type: String,
     },
     isAdmin: {
-        type: Boolean,
-        default: true,
+      type: Boolean,
+      default: false,  // По умолчанию пользователь НЕ админ
     },
     isActive: {
-        type: Boolean,
-        default: true
+      type: Boolean,
+      default: true,
     },
     phone: {
-        type: String,
+      type: String,
     },
-   
-  
     address: {
-        type: String,
-    }
+      type: String,
+    },
+  },
+  { timestamps: true }
+);
 
-
-}, { timestamps: true })
-
-const ProductScheme = mongoose.Schema({
+const productScheme = mongoose.Schema(
+  {
     title: {
-        type: String,
-        required: true,
-
-
+      type: String,
+      required: true,
     },
     desc: {
-        type: String,
-        required: true,
-        min: 0,
+      type: String,
+      required: true,
+      min: 0,
     },
     price: {
-        type: Number,
+      type: Number,
     },
     stock: {
-        type: Number,
-        required: true,
-        min: 0
+      type: Number,
+      required: true,
+      min: 0,
     },
     img: {
-        type: String,
-
+      type: String,
     },
     color: {
-        type: String,
-
+      type: String,
     },
     size: {
-        type: String,
-    }
+      type: String,
+    },
+  },
+  { timestamps: true }
+);
 
-
-}, { timestamps: true })
-
-export const User = mongoose.models.User || mongoose.model("User", userScheme)
-export const Product = mongoose.models.Product || mongoose.model("Product", ProductScheme)
+export const User = mongoose.models.User || mongoose.model("User", userScheme);
+export const Product = mongoose.models.Product || mongoose.model("Product", productScheme);
