@@ -1,23 +1,25 @@
-import { fetchUsers } from "@/app/lib/data"; // Импорт функции для получения списка пользователей
-import Pagination from "@/app/ui/dashboard/pagination/pagination"; // Импорт компонента пагинации
-import Search from "@/app/ui/dashboard/search/search"; // Импорт компонента поиска
-import styles from "@/app/ui/dashboard/users/users.module.css"; // Импорт CSS-модуля стилей
-import Link from "next/link"; // Импорт компонента Link для навигации
+import { fetchUsers } from "@/app/lib/data";
+import Pagination from "@/app/ui/dashboard/pagination/pagination";
+import Search from "@/app/ui/dashboard/search/search";
+import styles from "@/app/ui/dashboard/users/users.module.css";
+import Link from "next/link";
+import Image from "next/image";
 
 // Определение асинхронного компонента UsersPage
 export default async function UsersPage({ searchParams }) {
-  // Получаем параметр поиска из searchParams (если его нет, устанавливаем пустую строку)
-  const q = searchParams?.q || "";
+  // Извлекаем параметры поиска, приводя их к нужному типу
+  const q = searchParams?.q ? String(searchParams.q) : "";
+  const page = searchParams?.page ? Number(searchParams.page) : 1;
 
-  // Запрашиваем пользователей, передавая параметр поиска
-  const users = await fetchUsers(q);
+  // Запрашиваем пользователей, передавая параметры поиска
+  const { count, users } = await fetchUsers(q, page);
 
   return (
     <div className={styles.container}>
       {/* Верхняя часть с поиском и кнопкой добавления нового пользователя */}
       <div className={styles.top}>
-        <Search placeholder="Search for a user ..." /> {/* Компонент поиска */}
-        <Link href="/dashboard/users/add"> {/* Ссылка для перехода на страницу добавления пользователя */}
+        <Search placeholder="Search for a user ..." />
+        <Link href="/dashboard/users/add">
           <button className={styles.addButton}>Add New</button>
         </Link>
       </div>
@@ -26,39 +28,39 @@ export default async function UsersPage({ searchParams }) {
       <table className={styles.table}>
         <thead>
           <tr>
-            <td>Name</td> {/* Заголовок для имени */}
-            <td>Email</td> {/* Заголовок для email */}
-            <td>Created</td> {/* Заголовок для даты создания */}
-            <td>Role</td> {/* Заголовок для роли */}
-            <td>Status</td> {/* Заголовок для статуса */}
-            <td>Action</td> {/* Заголовок для действий */}
+            <td>Name</td>
+            <td>Email</td>
+            <td>Created</td>
+            <td>Role</td>
+            <td>Status</td>
+            <td>Action</td>
           </tr>
         </thead>
         <tbody>
           {/* Отображаем список пользователей */}
           {users.map((user) => (
-            <tr key={user.id}> {/* Уникальный ключ для React */}
+            <tr key={user?._id}>
               <td>
                 <div className={styles.user}>
-                  {/* Изображение пользователя, если нет — ставим стандартное */}
-                  <img
+                  {/* Оптимизированное изображение через next/image */}
+                  <Image
                     src={user.img || "/profil.png"}
-                    alt=""
+                    alt={user.username}
                     width={40}
                     height={40}
                     className={styles.userImage}
                   />
-                  {user.username} {/* Отображаем имя пользователя */}
+                  {user.username}
                 </div>
               </td>
-              <td>{user.email}</td> {/* Отображаем email пользователя */}
-              <td>{user.createdAt?.toString().slice(4, 16)}</td> {/* Дата создания (обрезанный формат) */}
-              <td>{user.isAdmin ? "Admin" : "Client"}</td> {/* Проверяем, является ли пользователь админом */}
-              <td>{user.isActive ? "active" : "passive"}</td> {/* Проверяем, активен ли пользователь */}
+              <td>{user.email}</td>
+              <td>{user.createdAt ? new Date(user?.createdAt).toLocaleDateString() : "N/A"}</td>
+              <td>{user.isAdmin ? "Admin" : "Client"}</td>
+              <td>{user.isActive ? "Active" : "Passive"}</td>
               <td>
                 <div className={styles.buttons}>
-                  {/* Кнопка для просмотра профиля пользователя */}
-                  <Link href={`/dashboard/users/${user.id}`}>
+                  {/* Ссылка на профиль пользователя */}
+                  <Link href={`/dashboard/users/${user._id}`}>
                     <button className={`${styles.button} ${styles.view}`}>
                       View
                     </button>
@@ -73,8 +75,9 @@ export default async function UsersPage({ searchParams }) {
           ))}
         </tbody>
       </table>
+
       {/* Компонент пагинации */}
-      <Pagination />
+      <Pagination count={count} />
     </div>
   );
 }
